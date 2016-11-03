@@ -1,0 +1,35 @@
+<h1>Listing Personal Contacts</h1>
+<%= link_to 'New Personal Contacts', new_user_path %>
+<br><br>
+<style>
+  table {
+      border-collapse: collapse;
+  }
+
+  table, td, th {
+      border: 1px solid black;
+  }
+</style>
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Mobile Number</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.mobile_number %></td>
+      <td><%= link_to 'Show', user_path(user) %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user_path(user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

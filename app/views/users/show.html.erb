@@ -1,0 +1,31 @@
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
+</p>
+ 
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Mobile Number:</strong>
+  <%= @user.mobile_number %>
+</p>
+
+<% if @user.user_meta_contents.present? %>
+  <ol>
+  <h3>Meta Content</h3>
+  <% for user_meta_content in @user.user_meta_contents %>
+    <li><%=h user_meta_content.meta_key %> = <%=h user_meta_content.meta_value %></li>
+  <% end %>
+  </ol>
+<% else %>  
+  <h4>No User meta content to display</h4>
+<% end %>  
+<%= link_to "Back", root_path %>

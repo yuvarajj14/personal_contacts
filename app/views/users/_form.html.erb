@@ -1,0 +1,54 @@
+<%= form_for @user do |f| %>
+ 
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this personal contact from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </p>
+ 
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :mobile_number %><br>
+    <%= f.text_field :mobile_number %>
+  </p>
+  
+  <hr>
+  <h1>New meta contents</h1>
+  <div id="user_meta_contents">
+    <%= f.fields_for :user_meta_contents do |user_meta_content| %>
+      <%= render "user_meta_content_fields", :f => user_meta_content %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add meta content', f, :user_meta_contents %>
+    </div>
+  </div> 
+
+  <hr> 
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
